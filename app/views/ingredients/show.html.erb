@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <strong>Name:</strong>
+  <%= @ingredient.name %>
+</h1>
+
+<h3>
+  <strong>Recipes that use this ingredient:</strong></h3>
+  <% @ingredient.recipes.each do |recipe| %>
+    <p><%= link_to recipe.name, recipe %></p>
+    <%end%>
+
+
+
+<h3>
+  <strong>Allergies:</strong>
+  <% @ingredient.recipes.each do |recipe| %>
+  <% recipe.user.allergens.each do |allergen| %>
+  <%  if allergen.id == @ingredient.id %>
+   <% @allergic_users << recipe.user %>
+   <%end%>
+   <%end%>
+   <%end%>
+   <p><%= @allergic_users.count%> users are allergic to this ingredient</p>
+  <% @allergic_users.each do |user|%>
+  <%= link_to user.name, user %>
+  <%end%>
+
+</h3>
+
+<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
+<%= link_to 'Back', ingredients_path %> |
+<%= link_to 'Home', home_path %>
+

@@ -1,0 +1,21 @@
+
+  <div class="field">
+
+    <%= form_for @recipe do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <h2>Please choose a user</h2>
+    <%= f.label :user %>
+    <%= f.collection_select :user_id, @users, :id, :name %>
+    <%= link_to "New User", new_user_path%>
+    <h2> Please select the ingredients for the recipe:</h2>
+    <%=f.collection_check_boxes(:ingredients, @ingredients, :id, :name) do |b|%> 
+    <%=  b.label(:"data-value" => b.value) { b.check_box + b.text }%>
+    <%end%>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

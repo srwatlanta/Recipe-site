@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ingredients</h1>
+
+
+    <% @ingredients.each do |ingredient| %>
+      <p><%= link_to ingredient.name.capitalize, ingredient %></p>
+    <% end %>
+
+
+<br>
+***************
+<br>
+<br>
+
+
+<%= link_to 'New Ingredient', new_ingredient_path %> |
+<%= link_to 'Home', home_path %>
+
